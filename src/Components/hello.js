@@ -4,7 +4,7 @@ class Hello extends Component {
 	
 	constructor(props) {
 		super(props);
-		this.state = {greetings: 'Hello'}
+		this.state = {greetings: 'Hello', list: 'Cars'}
 	}
 
 	render() {
