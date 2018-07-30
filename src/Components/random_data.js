@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import _ from 'lodash';
 
 class RandomData extends Component {
 
@@ -13,7 +14,7 @@ class RandomData extends Component {
 	
 	state = {
     persons: [],
-    albums: []
+    songs: []
   }
 
 	
@@ -27,18 +28,22 @@ class RandomData extends Component {
 
       axios.get(`http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=af94ca0cad8ea170d3975a5ab9942a86&artist=Cher&album=Believe&format=json`)
       .then(res => {
-      	console.log("test1: " + res.data.album.image)
-        const albums = res.data.album.image;
-        console.log(JSON.stringify(albums));
-        this.setState({ albums });
+      	// console.log("test1: " + JSON.stringify(res.data));
+        const list = res.data;
+        const songs = []
+        songs.push(list)
+        console.log(JSON.stringify(songs));
+        this.setState({ songs });
       })
   }
+
+
 
 	render() {
 		return(
 			<ul className = "Json">
         		{ this.state.persons.map(person => <li key={person.Make_ID}> {person.Make_Name}, {person.Make_ID} </li>)}
-        		{ this.state.albums.map(image => <li key={image.size}> {image.size} </li>)}
+        		{ this.state.songs.map(i => i.album.tracks.track.map(a => <li key={a.name}> {a.name} </li>)) }
       		</ul>
 
 		)
@@ -46,5 +51,7 @@ class RandomData extends Component {
 
 	
 } 
+
+// { this.state.songs.map(image => <li key={image.size}> {image.size} </li>)}
 
 export default RandomData;
