@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import ImageSwitcher from './Components/car_image_switcher';
-import RandomData from './Components/random_data';
+import NavBar from './Components/navbar';
 
 class App extends Component {
 
@@ -14,11 +14,10 @@ class App extends Component {
           <ImageSwitcher />
           <br/>
         </header>
-        <RandomData className="Data" />
+        <NavBar />
       </div>
     );
   }
 }
-
 
 export default App;
